@@ -1,0 +1,66 @@
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<ctime>
+using namespace std;
+
+int RandomNumber(int From, int To)
+{
+	int randNumber = 0;
+
+	randNumber = From + rand() % (To - From + 1);
+
+	return randNumber;
+}
+
+void FillArrayWithRandomNumbers(int Arr[100], int& arrLength)
+{
+	cout << "\nPleas enter How many Number You Want?\n";
+	cin >> arrLength;
+
+	for (int i = 0; i < arrLength; i++)
+		Arr[i] = RandomNumber(1, 100);
+
+}
+
+void PrintArray(int Arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		cout << Arr[i] << " ";
+	}
+	cout << endl;
+}
+
+int SumArray(int Arr[100], int arrLength)
+{
+	int Sum = 0;
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		Sum += Arr[i];
+	}
+	return Sum;
+}
+
+float ArrayAverage(int Arr[100], int arrLength)
+{
+	return (float)SumArray(Arr, arrLength) / arrLength;
+}
+
+int main()
+{
+	int Arr[100], arrLength = 0;
+
+	srand((unsigned)time(NULL));
+
+	FillArrayWithRandomNumbers(Arr, arrLength);
+
+	cout << "\nArray Elements: ";
+	PrintArray(Arr, arrLength);
+
+	cout << "\Average Of all Number is : "
+		<< ArrayAverage(Arr, arrLength) << endl;
+
+	return 0;
+}
